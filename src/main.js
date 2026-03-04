@@ -40,4 +40,6 @@ function addBookToLibrary() {
 }
 
 addBookToLibrary();
-console.log(myLibrary);
+for (const book of myLibrary) {
+    console.log(book.info());
+}
