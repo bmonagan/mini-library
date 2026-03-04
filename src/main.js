@@ -37,6 +37,7 @@ function addBookToLibrary() {
 
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
+    renderLibrary();
 }
 
 function renderLibrary() {
@@ -52,5 +53,9 @@ function renderLibrary() {
     }
 }
 
-addBookToLibrary();
+
 renderLibrary();
+const btn = document.getElementById("add-book");
+if (btn) {
+    btn.addEventListener("click", addBookToLibrary);
+}
