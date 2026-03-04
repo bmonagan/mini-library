@@ -1,5 +1,11 @@
 const myLibrary = [];
 
+function askField(label) {
+    const value = prompt(label);
+    if (value === null) return null;
+    return value.trim();
+}
+
 function Book(title, author, pages, read) {
     if (!new.target){
         throw new Error("Book must be called with new");
@@ -15,12 +21,23 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-    let title = prompt("Title:");
-    let author = prompt("Author:");
-    let pages = prompt("Pages:");
-    let read = prompt("Read:");
+    let title = askField("Title:");
+    if (title === null || title === "") return;
+
+    let author = askField("Author:");
+    if (author === null || author === "") return;
+
+    let pagesInput = askField("Pages:");
+    if (pagesInput === null || pagesInput === "") return;
+    let pages = Number.parseInt(pagesInput, 10);
+    if (Number.isNaN(pages)) pages = 0;
+
+    let read = askField("Read:");
+    if (read === null || read === "") read = "not read";
+
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
 }
 
 addBookToLibrary();
+console.log(myLibrary);
