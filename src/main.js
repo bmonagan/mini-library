@@ -63,6 +63,16 @@ function renderLibrary() {
             book.toggleRead();
             renderLibrary();
         });
+        let deletebutton = document.createElement("button");
+        deletebutton.textContent = "Delete";
+        item.appendChild(deletebutton);
+        deletebutton.addEventListener("click", () => {
+            const index = myLibrary.findIndex(b => b.id === book.id);
+            if (index !== -1) {
+                myLibrary.splice(index, 1);
+                renderLibrary();
+            }
+        });
         list.appendChild(item);
     }
 }
