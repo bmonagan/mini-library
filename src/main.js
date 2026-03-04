@@ -15,6 +15,13 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.id = crypto.randomUUID();
+    this.toggleRead = function() {
+        if (this.read === "read") {
+            this.read = "not read";
+        } else {
+            this.read = "read";
+        }
+    }
     this.info = function(){
         return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
     }
@@ -49,10 +56,19 @@ function renderLibrary() {
     for (const book of myLibrary) {
         const item = document.createElement("li");
         item.textContent = book.info();
+        let readbutton = document.createElement("button");
+        readbutton.textContent = "Toggle Read";
+        item.appendChild(readbutton);
+        item.addEventListener("click", () => {
+            book.toggleRead();
+            renderLibrary();
+        });
         list.appendChild(item);
     }
 }
-
+myLibrary.push(new Book("The Hobbit", "J.R.R. Tolkien", 310, "read"));
+myLibrary.push(new Book("1984", "George Orwell", 328, "not read"));
+myLibrary.push(new Book("To Kill a Mockingbird", "Harper Lee", 281, "read"));
 
 renderLibrary();
 const btn = document.getElementById("add-book");
