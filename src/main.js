@@ -59,7 +59,7 @@ function renderLibrary() {
         let readbutton = document.createElement("button");
         readbutton.textContent = "Toggle Read";
         item.appendChild(readbutton);
-        item.addEventListener("click", () => {
+        readbutton.addEventListener("click", () => {
             book.toggleRead();
             renderLibrary();
         });
