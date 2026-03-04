@@ -39,7 +39,18 @@ function addBookToLibrary() {
     myLibrary.push(book);
 }
 
-addBookToLibrary();
-for (const book of myLibrary) {
-    console.log(book.info());
+function renderLibrary() {
+    const list = document.getElementById("library-list");
+    if (!list) return;
+
+    list.innerHTML = "";
+
+    for (const book of myLibrary) {
+        const item = document.createElement("li");
+        item.textContent = book.info();
+        list.appendChild(item);
+    }
 }
+
+addBookToLibrary();
+renderLibrary();
